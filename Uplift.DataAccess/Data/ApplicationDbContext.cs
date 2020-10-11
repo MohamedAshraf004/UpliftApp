@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Uplift.Models;
 
 namespace UpliftApp.DataAccess.Data
 {
@@ -9,5 +10,7 @@ namespace UpliftApp.DataAccess.Data
             : base(options)
         {
         }
+        public DbSet<Category> Categories { get; set; }
+
     }
 }
