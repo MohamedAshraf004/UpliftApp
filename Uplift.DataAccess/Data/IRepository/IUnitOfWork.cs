@@ -7,6 +7,8 @@ namespace Uplift.DataAccess.Data.IRepository
         ICategoryRepository Category { get; }
         IFrequencyRepository Frequency { get; }
         IServiceRepository Service { get; }
+        IOrderDetailsRepository OrderDetails { get; }
+        IOrderHeaderRepository OrderHeader { get; }
         void Save();
     }
 }

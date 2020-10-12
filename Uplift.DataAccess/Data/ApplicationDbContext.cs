@@ -13,6 +13,8 @@ namespace UpliftApp.DataAccess.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Frequency> Frequencies { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<OrderHeader> OrderHeaders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
 
     }
 }

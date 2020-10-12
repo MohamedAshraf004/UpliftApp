@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using Uplift.DataAccess.Data.IRepository;
 using Uplift.DataAccess.Data.Repository;
 using UpliftApp.DataAccess.Data;
@@ -31,7 +32,12 @@ namespace UpliftApp
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();
 
-
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(4);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
@@ -54,6 +60,7 @@ namespace UpliftApp
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 
