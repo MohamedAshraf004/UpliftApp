@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Uplift.DataAccess.Data.IRepository;
+using Uplift.DataAccess.Data.Repository;
 using UpliftApp.DataAccess.Data;
 
 namespace UpliftApp
@@ -24,9 +26,15 @@ namespace UpliftApp
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
+
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
 
