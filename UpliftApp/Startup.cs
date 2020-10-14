@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using Uplift.DataAccess.Data.Initializer;
 using Uplift.DataAccess.Data.IRepository;
 using Uplift.DataAccess.Data.Repository;
 using UpliftApp.DataAccess.Data;
@@ -39,13 +40,14 @@ namespace UpliftApp
                 options.Cookie.IsEssential = true;
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IDbInitializer, DbInitializer>();
 
             services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -63,7 +65,7 @@ namespace UpliftApp
             app.UseSession();
 
             app.UseRouting();
-
+            dbInitializer.Initialize();
             app.UseAuthentication();
             app.UseAuthorization();
 
