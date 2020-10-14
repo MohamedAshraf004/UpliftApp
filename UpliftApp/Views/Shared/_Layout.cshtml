@@ -32,17 +32,26 @@
                         <li class="nav-item">
                             <a class="nav-link " asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Content Management
-                            </a>
-                            <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropDown">
-                                <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                                <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Frequency" asp-action="Index">Frequency</a>
-                                <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Service" asp-action="Index">Service</a>
-                                <a class="dropdown-item text-white" asp-area="Admin" asp-controller="WebImage" asp-action="Index">Image Uploader</a>
-                            </div>
-                        </li>
+
+                        @if (User.IsInRole(SD.Manager) || User.IsInRole(SD.Admin))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Content Management
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropDown">
+                                    <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                                    <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Frequency" asp-action="Index">Frequency</a>
+                                    <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Service" asp-action="Index">Service</a>
+                                    <a class="dropdown-item text-white" asp-area="Admin" asp-controller="WebImage" asp-action="Index">Image Uploader</a>
+                                    @if (User.IsInRole(SD.Admin))
+                                    {
+                                        <a class="dropdown-item text-white" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>}
+                                    <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Order" asp-action="Index">Order</a>
+
+                                </div>
+                            </li>
+                        }
                         @if (HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)
                         {
                             <li style="color:white">
@@ -51,7 +60,7 @@
                                     <i class="fas fa-shopping-cart"></i>&nbsp; (@count)
                                 </a>
                             </li>
- }
+                        }
                         else
                         {
                             <li style="color:white">
@@ -60,7 +69,7 @@
                                     <i class="fas fa-shopping-cart"></i>&nbsp; (0)
                                 </a>
                             </li>
-}
+                        }
                     </ul>
 
                 </div>
