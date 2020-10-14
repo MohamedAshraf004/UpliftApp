@@ -39,15 +39,15 @@
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Content Management
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropDown">
-                                    <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                                    <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Frequency" asp-action="Index">Frequency</a>
-                                    <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Service" asp-action="Index">Service</a>
-                                    <a class="dropdown-item text-white" asp-area="Admin" asp-controller="WebImage" asp-action="Index">Image Uploader</a>
+                                <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropDown">
+                                    <a class="nav-link dropdown-item" style="color:darkblue" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                                    <a class="nav-link dropdown-item" style="color:darkblue" asp-area="Admin" asp-controller="Frequency" asp-action="Index">Frequency</a>
+                                    <a class="nav-link dropdown-item" style="color:darkblue" asp-area="Admin" asp-controller="Service" asp-action="Index">Service</a>
+                                    <a class="nav-link dropdown-item" style="color:darkblue" asp-area="Admin" asp-controller="WebImage" asp-action="Index">Image Uploader</a>
                                     @if (User.IsInRole(SD.Admin))
                                     {
-                                        <a class="dropdown-item text-white" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>}
-                                    <a class="dropdown-item text-white" asp-area="Admin" asp-controller="Order" asp-action="Index">Order</a>
+                                        <a class="nav-link dropdown-item" style="color:darkblue" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>}
+                                    <a class="nav-link dropdown-item" style="color:darkblue" asp-area="Admin" asp-controller="Order" asp-action="Index">Order</a>
 
                                 </div>
                             </li>
